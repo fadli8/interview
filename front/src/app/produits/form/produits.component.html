@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row pt-5">
+    <div class="col-2"></div>
+    <div class="col-8 form-box">
+      <h1 class="text-center">Product Form</h1>
+        <div class="form-group">
+          <label for="produit">Product name</label>
+          <input type="text" class="form-control" id="produit" [(ngModel)]="product.name">
+        </div>
+        <div class="form-group">
+          <label for="slug">product Slug</label>
+          <input type="text" class="form-control" id="slug" [(ngModel)]="product.slug">
+        </div>
+        <div class="form-group">
+          <label for="stock">Stock</label>
+          <input type="number" class="form-control" id="stock" [(ngModel)]="product.stock">
+        </div>
+        <div class="form-group">
+          <label for="categories">Categories</label>
+          <select class="form-control" id="categories" #catego (change)="selectCatego(catego.value)">
+            <option></option>
+            <option *ngFor="let catego of listCategories" [value]="catego.id">{{catego.name}}</option>
+          </select>
+        </div>
+        <br>
+        <button class="btn btn-primary btn-block" (click)="addProduct()">Add</button>
+      </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+<!-- table -->
+<div class="container-fluid mt-5 mb-5">
+  <div class="row">
+      <div class="col-12">
+        <table class="table table-striped table-inverse">
+          <thead class="thead-inverse">
+            <tr>
+              <th>#Id</th>
+              <th>Product Name</th>
+              <th>Product Slug</th>
+              <th>Categorie</th>
+              <th>Stockage</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prod of listProduct">
+                <td scope="row">{{prod.id}}</td>
+                <td>{{prod.name | slice:0:40}}</td>
+                <td>{{prod.slug | slice:0:40}}</td>
+                <td>{{prod.categrie_name}}</td>
+                <td>{{prod.stock}}</td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+  </div>
+</div>
